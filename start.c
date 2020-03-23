@@ -10,7 +10,7 @@ void core0_main();
 void core1_main();
 void puts(char *str);
 void putc(char ch);
-void busy_loop(volatile unsigned num);
+int getc();
 
 void start(int core_number){
 	if(core_number == 0)
@@ -25,15 +25,21 @@ void core0_main(){
 		puts("core 0\r\n");
 		BUSY_LOOP(100000);
 	}
+
+	while(1);
 }
 
 void core1_main(){
 	BUSY_LOOP(50000);
 	puts("core 1\r\n");
 	while(1){
+		if(getc() == 'q')
+			break;
 		puts("core 1\r\n");
 		BUSY_LOOP(100000);
 	}
+
+	while(1);
 }
 
 void puts(char *str){
@@ -47,4 +53,9 @@ void putc(char ch){
 	volatile char *p = (char*)TXF_ADDR;
 	while(*p < 0);
 	*p = ch & 0xff;
+}
+
+int getc(){
+	volatile int *p = (int*)RXF_ADDR;
+	return *p;
 }
