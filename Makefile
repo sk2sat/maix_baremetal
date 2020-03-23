@@ -1,7 +1,4 @@
-TOOLS_PATH = /opt/riscv/bin/
-#/opt/kendryte-toolchain/bin/
-PREFIX	= $(TOOLS_PATH)riscv64-unknown-linux-gnu-
-#riscv64-unknown-elf-
+PREFIX	= riscv64-unknown-elf-
 CC		= $(PREFIX)gcc
 LD		= $(PREFIX)ld
 OBJCOPY	= objcopy
