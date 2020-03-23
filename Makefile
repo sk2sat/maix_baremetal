@@ -7,7 +7,7 @@ LD		= $(PREFIX)ld
 OBJCOPY	= objcopy
 
 COMMON_FLAGS =
-CFLAGS = -mcmodel=medany
+CFLAGS = -mcmodel=medany -fno-builtin -nostdinc
 CFLAGS += -fno-common -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -fno-zero-initialized-in-bss
 
 TARGET = k210.bin
