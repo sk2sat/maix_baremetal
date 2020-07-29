@@ -10,6 +10,8 @@ CFLAGS += -fno-common -ffunction-sections -fdata-sections -fstrict-volatile-bitf
 TARGET = k210.bin
 OBJS = entry.o start.o
 
+PORT_K210 = /dev/ttyUSB0
+
 %.o: %.S
 	$(CC) -o $@ -c $<
 
@@ -21,7 +23,7 @@ default:
 
 flash:
 	make
-	kflash -p /dev/ttyUSB0 $(TARGET)
+	kflash -p $(PORT_K210) $(TARGET)
 
 clean:
 	rm -f *.bin *.elf *.o
